@@ -60,9 +60,10 @@ function SidebarIcon({ icon, label, active }) {
       {/* ICON */}
       <FontAwesomeIcon
         icon={icon}
+        style={active ? { color: GREEN } : {}}
         className={
           active
-            ? `text-[${GREEN}]`
+            ? ""
             : "text-gray-400 group-hover:text-white transition-colors"
         }
         size="lg"
@@ -70,9 +71,10 @@ function SidebarIcon({ icon, label, active }) {
 
       {/* LABEL */}
       <span
+        style={active ? { color: GREEN } : {}}
         className={
           active
-            ? `text-[11px] mt-1 font-semibold text-[${GREEN}]`
+            ? "text-[11px] mt-1 font-semibold"
             : "text-[11px] mt-1 text-gray-300 font-medium group-hover:text-gray-200 transition-colors"
         }
       >

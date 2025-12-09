@@ -1,18 +1,45 @@
 # This is my take on the assessment put forward by BraveGen & Team.
+This repository contains my implementation of the BraveGen front-end technical assessment.
+The goal was to recreate the Integrations page UI with pixel accuracy, clean architecture, reusable components, and a mock API layer to simulate real data flows.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Features Implemented
+### Layout + Navigation
++ Primary sidebar (icons, active state, green theme)
++ Topbar with company dropdown, search, notifications, user menu
++ Subnavigator with grouped items + active highlighting
 
-Currently, two official plugins are available:
+## Integrations Page
++ “Choose a Service to Connect” grid
++ Pixel-perfect responsive card layout
++ Icon, title, description, CTA button
++ Clean reusable card component
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Existing Connections Table
++ Search bar with live filtering
++ Fixed column widths
++ Pagination (8 items per page)
++ Badges for Carbon / Utility
++ “Copy to Clipboard” with Toast
++ “View” opens new tab
++ Edit + Delete modals
 
-## React Compiler
+### Modals
++ Edit modal with warning theme
++ Delete modal with destructive theme
++ Buttons equally spaced (50/50 layout)
++ Click-outside + ESC support
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+### Mock API Layer
++ Decoupled data loading for:
++ Available services
++ Existing connections
++ Tenants
++ User data
++ (Uses simulated latency to mimic real-world API behavior.)
 
-Note: This will impact Vite dev & build performances.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Architecture Notes
++ No UI component uses hard-coded data directly
++ All data is fetched through a mock API + useIntegrations hook
++ Shared constants (GREEN, TABLE_BORDER, PAGINATION_GRAY) keep styling consistent
++ Dropdowns and modals use a reusable useClickOutside hook
++ Clean folder structure separating (layout, common reusable components, integrations module, data layer, hooks, utilities)

@@ -35,7 +35,7 @@ export default function IntegrationPage() {
 
   return (
     <div className="p-6">
-      <div className="p-8">
+      <div className="pb-8">
 
         <h1 className="text-left text-2xl font-semibold">Choose a Service to Connect</h1>
         <p className="text-left text-gray-600 text-sm mt-1">
