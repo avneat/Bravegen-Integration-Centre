@@ -1,123 +1,120 @@
+import { NavLink, useLocation } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faUser,
+  faHouse,
   faUsers,
-  faTags,
-  faPlug,
+  faTag,
+  faQrcode,
   faGear,
   faSitemap,
-  faBoxesStacked,
-  faCloud,
-  faChartColumn,
-  faListCheck,
   faBuilding,
-  faDisplay,
+  faTableCells,
+  faCloud,
+  faCamera,
+  faDesktop,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { NavLink } from "react-router-dom";
-
-const sections = [
-  {
-    title: "Organisation",
-    items: [
-      { label: "Manage", icon: faUser, path: "#" },
-      { label: "Users", icon: faUsers, path: "#" },
-      { label: "Tags", icon: faTags, path: "#" },
-      {
-        label: "Integrations",
-        icon: faPlug,
-        path: "/settings/integrations",
-        active: true,
-      },
-    ],
-  },
-  {
-    title: "Utilities",
-    items: [
-      { label: "Configuration", icon: faGear, path: "#" },
-      { label: "Hierarchy", icon: faSitemap, path: "#" },
-      { label: "Assets", icon: faBoxesStacked, path: "#" },
-    ],
-  },
-  {
-    title: "Carbon",
-    items: [
-      { label: "Configuration", icon: faGear, path: "#" },
-      { label: "Hierarchy", icon: faSitemap, path: "#" },
-      { label: "Inventory Items", icon: faListCheck, path: "#" },
-      { label: "Emission Factors", icon: faCloud, path: "#" },
-    ],
-  },
-  {
-    title: "Displays",
-    items: [
-      { label: "Snapshots", icon: faChartColumn, path: "#" },
-      { label: "Manage", icon: faDisplay, path: "#" },
-    ],
-  },
-];
+import { GREEN } from "../../utils/contants";
 
 export default function Subnavigator() {
+  const location = useLocation();
+
+  const sections = [
+    {
+      title: "Organisation",
+      items: [
+        { icon: faHouse, label: "Manage", path: "/settings/manage", disabled: false },
+        { icon: faUsers, label: "Users", path: "/settings/users", disabled: false },
+        { icon: faTag, label: "Tags", path: "/settings/tags", disabled: false },
+        { icon: faQrcode, label: "Integrations", path: "/settings/integrations", disabled: false },
+      ]
+    },
+    {
+      title: "Utilities",
+      items: [
+        { icon: faGear, label: "Configuration", path: "/settings/configuration", disabled: false },
+        { icon: faSitemap, label: "Hierarchy", path: "/settings/hierarchy", disabled: false },
+        { icon: faBuilding, label: "Assets", path: "/settings/assets", disabled: false },
+      ]
+    },
+    {
+      title: "Carbon",
+      items: [
+        { icon: faGear, label: "Configuration", path: "/settings/carbon/config", disabled: false },
+        { icon: faSitemap, label: "Hierarchy", path: "/settings/carbon/hierarchy", disabled: false },
+        { icon: faTableCells, label: "Inventory Items", path: "/settings/carbon/inventory", disabled: false },
+        { icon: faCloud, label: "Emission Factors", path: "/settings/carbon/emissions", disabled: false },
+        { icon: faCamera, label: "Snapshots", path: "", disabled: true },
+      ]
+    },
+    {
+      title: "Displays",
+      items: [
+        { icon: faDesktop, label: "Manage", path: "/settings/displays/manage", disabled: false },
+      ]
+    },
+  ];
+
   return (
-    <aside className="w-60 bg-white border-r h-full px-4 py-6 space-y-8">
+    <aside className="w-56 bg-gray-50 border-r px-4 py-8 space-y-8 h-full">
 
-      {/* Organisation */}
-      <div>
-        <div className="text-xs uppercase text-gray-500 mb-2">Organisation</div>
+      {sections.map(section => (
+        <div key={section.title}>
+          
+          {/* SECTION TITLE */}
+          <h3 className="text-left text-[11px] font-semibold uppercase text-gray-500 tracking-wide mb-3">
+            {section.title}
+          </h3>
 
-        <nav className="space-y-1 text-sm">
-          <div className="px-3 py-2 rounded-md hover:bg-gray-100">Manage</div>
-          <div className="px-3 py-2 rounded-md hover:bg-gray-100">Users</div>
-          <div className="px-3 py-2 rounded-md hover:bg-gray-100">Tags</div>
+          <div className="space-y-1">
 
-          {/* ACTIVE ITEM */}
-          <div className="px-3 py-2 rounded-md bg-green-600 text-white">
-            Integrations
+            {section.items.map(item => {
+              const isActive = location.pathname === item.path;
+              const disabled = item.disabled;
+
+              const iconColor = disabled
+                ? "#c9c9c9"
+                : isActive
+                ? "white"
+                : GREEN;
+
+              const textColor = disabled
+                ? "text-gray-400"
+                : isActive
+                ? "text-white"
+                : "text-gray-700";
+
+              return (
+                <NavLink
+                  key={item.label}
+                  to={disabled ? "#" : item.path}
+                  className="block"
+                >
+                  <div
+                    style={isActive ? { backgroundColor: GREEN } : {}}
+                    className={
+                      isActive
+                        ? "flex items-center gap-3 px-3 py-2 rounded-md text-white font-semibold"
+                        : disabled
+                        ? "flex items-center gap-3 px-3 py-2 rounded-md opacity-50 cursor-not-allowed"
+                        : "flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-100"
+                    }
+                  >
+                    <FontAwesomeIcon
+                      icon={item.icon}
+                      color={iconColor}
+                      size="sm"
+                    />
+
+                    <span className={textColor}>{item.label}</span>
+                  </div>
+                </NavLink>
+              );
+            })}
+
           </div>
-        </nav>
-      </div>
-
-      {/* Utilities */}
-      <div>
-        <div className="text-xs uppercase text-gray-500 mb-2">Utilities</div>
-
-        <nav className="space-y-1 text-sm">
-          <div className="px-3 py-2 rounded-md hover:bg-gray-100">
-            Configuration
-          </div>
-          <div className="px-3 py-2 rounded-md hover:bg-gray-100">Hierarchy</div>
-          <div className="px-3 py-2 rounded-md hover:bg-gray-100">Assets</div>
-        </nav>
-      </div>
-
-      {/* Carbon */}
-      <div>
-        <div className="text-xs uppercase text-gray-500 mb-2">Carbon</div>
-
-        <nav className="space-y-1 text-sm">
-          <div className="px-3 py-2 rounded-md hover:bg-gray-100">
-            Configuration
-          </div>
-          <div className="px-3 py-2 rounded-md hover:bg-gray-100">Hierarchy</div>
-          <div className="px-3 py-2 rounded-md hover:bg-gray-100">
-            Inventory Items
-          </div>
-          <div className="px-3 py-2 rounded-md hover:bg-gray-100">
-            Emission Factors
-          </div>
-        </nav>
-      </div>
-
-      {/* Displays */}
-      <div>
-        <div className="text-xs uppercase text-gray-500 mb-2">Displays</div>
-
-        <nav className="space-y-1 text-sm">
-          <div className="px-3 py-2 rounded-md hover:bg-gray-100">Snapshots</div>
-          <div className="px-3 py-2 rounded-md hover:bg-gray-100">Manage</div>
-        </nav>
-      </div>
-
+        </div>
+      ))}
     </aside>
   );
 }

@@ -10,16 +10,16 @@ export default function AppLayout() {
       <div className="flex flex-col flex-1 w-full">
         <Topbar />
 
-<div className="flex h-screen w-full bg-gray-100">
-      <Subnavigator />
-      
-      
+        <div className="flex h-screen w-full bg-gray-100">
+          <Subnavigator />
 
-        <main className="p-6 w-full h-full overflow-y-auto bg-gray-100">
-          <Outlet />
-        </main>
+
+
+          <main className="p-6 w-full h-full overflow-y-auto bg-gray-100">
+            <Outlet />
+          </main>
+        </div>
       </div>
-    </div>
     </div>
   );
 }
