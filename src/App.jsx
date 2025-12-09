@@ -3,10 +3,9 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
+import AppRouter from "./routes/AppRoutes";
+
 export default function App() {
-  return (
-    <h1 className="text-4xl text-blue-600 p-4">
-      This is a test!
-    </h1>
-  );
+  return <AppRouter />;
 }
+
