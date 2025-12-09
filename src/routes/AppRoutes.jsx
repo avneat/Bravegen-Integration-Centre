@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import AppLayout from "../components/layout/AppLayout";
-import Integration from "../pages/Integration";
+import Integration from "../pages/settings/Integration";
 
 export default function AppRouter() {
   return (

@@ -54,7 +54,7 @@ export default function Topbar() {
         {/* PAGE TITLE */}
         <div className="flex items-center gap-2">
           <FontAwesomeIcon icon={faQrcode} className="text-gray-600" />
-          <h1 className="text-lg font-semibold text-gray-800">Integrations</h1>
+          <h2 className="text-lg font-semibold text-gray-800">Integrations</h2>
         </div>
       </div>
 

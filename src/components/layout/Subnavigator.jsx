@@ -56,7 +56,8 @@ export default function Subnavigator() {
   ];
 
   return (
-    <aside className="w-56 bg-gray-50 border-r px-4 py-8 space-y-8 h-full">
+    <aside className="w-72 bg-gray-50 border-r px-6 py-8 space-y-8 h-full">
+
 
       {sections.map(section => (
         <div key={section.title}>
